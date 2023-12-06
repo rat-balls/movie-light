@@ -1,0 +1,32 @@
+.register-page {
+  background-color: #171610; 
+  color: #ffffff; 
+  height: 100vh; 
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+
+  .NamePage {
+    margin-bottom: 20px; 
+  }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      input {
+        margin: 10px;
+        padding: 10px;
+        color: #000000; 
+        background-color: #ffffff; 
+      }
+  
+      button {
+        margin: 10px;
+        padding: 10px;
+        color: #ffffff; 
+        background-color: #000000;
+      }
+    }
+  }
