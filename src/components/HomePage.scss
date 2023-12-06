@@ -1,0 +1,107 @@
+.home-page {
+    background-color: #171610; 
+    color: #ffffff; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+
+    .featured-movie {
+      width: 98%;
+      margin-left: 1%;
+      height: 500px;
+      border-radius: 50px;
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      display: flex;
+      justify-content: flex-start;
+      align-items: end;
+      font-size: 2em;
+      }
+
+    .movie-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    
+        .movie-item {
+          width: 18%;
+          padding: 5px;
+    
+          .movie-image {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            max-width: 200;
+            object-fit: cover; 
+          }
+        }
+      }
+
+    .overlay{
+      margin-left: 2%;
+      width: 45%;
+    }
+
+    .TitleOverlay{
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+
+    .OverviewOverlay{
+      font-size: 0.5em;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+
+    .OptionOverlay {
+      .bubble {
+        background-color: #ffffff;
+        border-radius: 20px;
+        color: black;
+        font-size: 20px;
+        display: inline-block;
+      }
+    }
+
+    .FormSearch{
+      display: flex;
+      justify-content: center;
+    }
+
+    .TitleMovie{
+      font-size: 1.4em;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+  
+    .search-bar {
+      margin: 1%;
+      display: flex;
+      align-items: center;
+      width: 95%; 
+      background-color: #2d2c26;
+      border-radius: 20px; 
+      padding: 5px;
+  
+      .search-icon {
+        margin-right: 10px;
+        color: #ffffff;
+      }
+  
+      input {
+        flex-grow: 1;
+        border: none; 
+        color: #ffffff;
+        background-color: transparent; 
+        outline: none;
+        font-size: 16px;
+        padding: 10px 0; 
+      }
+    }
+  }
