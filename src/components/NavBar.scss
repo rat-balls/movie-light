@@ -1,0 +1,17 @@
+// NavBar.scss
+.navbar {
+    background-color: #000000; 
+    color: #ffffff; 
+    display: flex;
+    justify-content: space-around; 
+    padding: 20px 0; 
+  
+    a {
+      color: #ffffff; 
+      text-decoration: none; 
+  
+      &:hover {
+        color: #ff0000; 
+      }
+    }
+  }

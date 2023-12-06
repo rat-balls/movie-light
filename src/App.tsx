@@ -1,14 +1,23 @@
+// App.tsx
 import React from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import NavBar from './components/NavBar';
+import RegisterPage from './components/RegisterPage';
 import HomePage from './components/HomePage';
+import LoginPage from './components/LoginPage';
 
 function App() {
   return (
-    <Routes>
-      <Route path='*' element={<HomePage />}></Route>
-    </Routes>
-  );
+    <Router>
+      <NavBar /> 
+      <Routes>
+        <Route path="/" element={<HomePage />} /> 
+        <Route path="/Register" element={<RegisterPage />} />
+        <Route path="/Login" element={<LoginPage />} />
+      </Routes>
+    </Router>
+  )
 }
 
 export default App;
