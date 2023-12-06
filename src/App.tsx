@@ -9,14 +9,14 @@ import LoginPage from './components/LoginPage';
 
 function App() {
   return (
-    <Router>
+    <>
       <NavBar /> 
       <Routes>
         <Route path="/" element={<HomePage />} /> 
         <Route path="/Register" element={<RegisterPage />} />
         <Route path="/Login" element={<LoginPage />} />
       </Routes>
-    </Router>
+    </>
   )
 }
 

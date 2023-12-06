@@ -1,14 +1,42 @@
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
 import './RegisterPage.scss'
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth'
+import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
+import { app } from '..'
 
 export default function RegisterPage() {
+
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userPswrd, setUserPswrd] = useState('');
+
+  const auth = getAuth(app);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
+    console.log(userEmail)
+    console.log(userPswrd)
+    createUserWithEmailAndPassword(auth, userEmail, userPswrd)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateProfile(user, {
+          displayName: userName
+        })
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });;
+  }
+
   return (
     <div className="register-page">
       <h1 className='NamePage'>REGISTER PAGE</h1>
-      <form>
-        <input className='UserName' type="text" placeholder="Nom d'utilisateur" required />
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Mot de passe" required />
+      <form onSubmit={handleSubmit}>
+        <input className='UserName' type="text" placeholder="Nom d'utilisateur" value={userName} onChange={(e) => setUserName(e.target.value)} required />
+        <input type="email" placeholder="Email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} required />
+        <input type="password" placeholder="Mot de passe" value={userPswrd} onChange={(e) => setUserPswrd(e.target.value)} required />
         <button type="submit">S'inscrire</button>
       </form>
     </div>
