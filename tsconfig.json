@@ -21,6 +21,8 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "node_modules/@fortawesome/free-solid-svg-icons",
+    "node_modules/@fortawesome/react-fontawesome"
   ]
 }
