@@ -71,7 +71,7 @@ function HomePage() {
     <div className="home-page">
       {seriesList.length > 0 && (
         <div 
-          className="featured-movie" 
+          className="featured-serie" 
           style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${seriesList[0].poster_path})` }}
         >
           <div className="gradient-overlay"></div>
@@ -99,6 +99,8 @@ function HomePage() {
             type="text"
             placeholder="Search"
             name="query"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
         </div>
       </form>
@@ -152,47 +154,19 @@ function HomePage() {
             Action & Adventure
           </button>
         </div>
-    <div className="movie-list">
-      {seriesList.map((movie: seriesType, index) => (
-        <div className="movie-item" key={index}>
-          <div className="movie-poster">
-            <img className="movie-image" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.name} />
+    <div className="serie-list">
+      {seriesList.map((serie: seriesType, index) => (
+        <div className="serie-item" key={index}>
+          <div className="serie-poster">
+            <img className="serie-image" src={`https://image.tmdb.org/t/p/w500/${serie.poster_path}`} alt={serie.name} />
             <button
-                className={`add-button ${movie.clicked ? 'clicked' : ''}`}
-                onClick={() => handleAdd(movie.id)}>
-                {movie.clicked ? '✓' : '+'}
+                className={`add-button ${serie.clicked ? 'clicked' : ''}`}
+                onClick={() => handleAdd(serie.id)}>
+                {serie.clicked ? '✓' : '+'}
               </button>
           </div>
         </div>
     ))}
-    </div>
-        <form className='FormSearch'>
-          <div className="search-bar">
-            <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
-            <input
-              type="text"
-              placeholder="Search"
-              name="query"
-              value={query} onChange={(e) => setQuery(e.target.value)}
-            />
-          </div>
-        </form>
-      <div className="serie-list">
-        {seriesList.map((serie: seriesType, index) => (
-          <div className="serie-item" key={index}>
-            <div className="serie-poster">
-              <img className="serie-image" src={`https://image.tmdb.org/t/p/w500/${serie.poster_path}`} alt={serie.name} />
-              <button
-                  className={`add-button ${serie.clicked ? 'clicked' : ''}`}
-                  onClick={() => handleAdd(serie.id)}>
-                  {serie.clicked ? '✓' : '+'}
-                </button>
-            </div>
-            <p className="TitleSerie">
-              {serie.name.length > 22 ? serie.name.substring(0, 22).concat('...') : serie.name}
-            </p>
-          </div>
-        ))}
         </div>
       </div>
     );
