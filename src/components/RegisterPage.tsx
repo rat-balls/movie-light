@@ -1,11 +1,13 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import './RegisterPage.scss'
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { app } from '..'
+import { useNavigate } from 'react-router-dom'
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
 
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -22,13 +24,21 @@ export default function RegisterPage() {
         const user = userCredential.user;
         updateProfile(user, {
           displayName: userName
-        })
+        });
+        navigate('/');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });;
   }
+
+  useEffect(() => {
+    if(auth.currentUser !== null) {
+      navigate('/');
+    }
+  }
+  , [auth.currentUser, navigate]);
 
   return (
     <div className="register-page">
