@@ -22,6 +22,8 @@ export default function LoginPage() {
         const errorCode = error.code;
         if(errorCode === 'auth/invalid-credential') {
           setErrorMsg('Email ou Mot de passe erronés');
+        } else {
+          setErrorMsg(error.message);
         }
       });;
   }
@@ -38,7 +40,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit}>
         <input type="email" placeholder="Email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} required />
         <input type="password" placeholder="Mot de passe" value={userPswrd} onChange={(e) => setUserPswrd(e.target.value)} required />
-        {errorMsg !== null ? <p>{errorMsg}</p> : <></>}
+        {errorMsg !== '' ? <p>{errorMsg}</p> : <></>}
         <button type="submit">Se connecter</button>
       </form>
     </div>
