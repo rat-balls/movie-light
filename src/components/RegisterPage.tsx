@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import './RegisterPage.scss'
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
 import { app } from '..'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'; 
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -46,12 +46,13 @@ export default function RegisterPage() {
     <div className="register-page">
       <h1 className='NamePage'>REGISTER PAGE</h1>
       <form onSubmit={handleSubmit}>
-        <input className='UserName' type="text" placeholder="Nom d'utilisateur" value={userName} onChange={(e) => setUserName(e.target.value)} required />
+        <input className='UserName' type="text" placeholder="UserName" value={userName} onChange={(e) => setUserName(e.target.value)} required />
         <input type="email" placeholder="Email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} required />
-        <input type="password" placeholder="Mot de passe" value={userPswrd} onChange={(e) => setUserPswrd(e.target.value)} required />
+        <input type="password" placeholder="Password" value={userPswrd} onChange={(e) => setUserPswrd(e.target.value)} required />
         {errorMsg !== '' ? <p>{errorMsg}</p> : <></>}
-        <button type="submit">S'inscrire</button>
-      </form>
+        <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <Link to="/login">Log in here</Link></p>
     </div>
   )
 }

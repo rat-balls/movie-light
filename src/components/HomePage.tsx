@@ -1,12 +1,10 @@
 import { useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
 import { faSearch, } from '@fortawesome/free-solid-svg-icons';
 import './HomePage.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function HomePage() {
-
-  const queryParams = useParams();
+  const [selectedFilter, setSelectedFilter] = useState('All');
 
   type seriesType = {
       adult: boolean,
@@ -64,26 +62,110 @@ function HomePage() {
     setSeriesList(updatedSeries);
   };
 
+  const handleFilter = (filter: string) => {
+    setSelectedFilter(filter);
+  };
+
 
   return (
-  <div className="home-page">
-    {seriesList.length > 0 && (
-      <div 
-        className="featured-serie" 
-        style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${seriesList[0].poster_path})` }}
-      >
-        <div className="gradient-overlay"></div>
-        <div className="text-content">
-          <div className="overlay">
-            <p className='TitleOverlay'>{seriesList[0].name}</p>
-            <p className='OverviewOverlay'>{seriesList[0].overview.substring(0, 225).concat('...')}</p>
-            <p className='OptionOverlay'>
-              <span className="bubble">{seriesList[0].popularity}</span>
-            </p>
+    <div className="home-page">
+      {seriesList.length > 0 && (
+        <div 
+          className="featured-movie" 
+          style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${seriesList[0].poster_path})` }}
+        >
+          <div className="gradient-overlay"></div>
+          <div className="text-content">
+            <div className="overlay">
+              <p className='TitleOverlay'>{seriesList[0].name}</p>
+              <p className='OverviewOverlay'>{seriesList[0].overview.substring(0, 225).concat('...')}</p>
+              <p className='OptionOverlay'>
+                <span className="bubble">/ from release_date to popularity, needs changing ? / - {seriesList[0].popularity}</span>
+              </p>
+              <button
+                className={`add-button-featured ${seriesList[0].clicked ? 'clicked' : ''}`}
+                onClick={() => handleAdd(seriesList[0].id)}
+              >
+                {seriesList[0].clicked ? '✓' : '+'}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
+      <form className='FormSearch'>
+        <div className="search-bar">
+          <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
+          <input
+            type="text"
+            placeholder="Search"
+            name="query"
+          />
+        </div>
+      </form>
+      <div className='Filter'>
+          <button
+            className={`filter-button ${selectedFilter === 'All' ? 'selected' : ''}`}
+            onClick={() => handleFilter('All')}
+          >
+            All
+          </button>
+          <button
+            className={`filter-button ${selectedFilter === 'sci-Fi & Fantasy' ? 'selected' : ''}`}
+            onClick={() => handleFilter('sci-Fi & Fantasy')}
+          >
+            Sci-Fi & Fantasy
+          </button>
+          <button
+            className={`filter-button ${selectedFilter === 'Drama' ? 'selected' : ''}`}
+            onClick={() => handleFilter('Drama')}
+          >
+            Drama
+          </button>
+          <button
+            className={`filter-button ${selectedFilter === 'Crime' ? 'selected' : ''}`}
+            onClick={() => handleFilter('Crime')}
+          >
+            Crime
+          </button>
+          <button
+            className={`filter-button ${selectedFilter === 'Animation' ? 'selected' : ''}`}
+            onClick={() => handleFilter('Animation')}
+          >
+            Animation
+          </button>
+          <button
+            className={`filter-button ${selectedFilter === 'Comedy' ? 'selected' : ''}`}
+            onClick={() => handleFilter('Comedy')}
+          >
+            Comedy
+          </button>
+          <button
+            className={`filter-button ${selectedFilter === 'Documentary' ? 'selected' : ''}`}
+            onClick={() => handleFilter('Documentary')}
+          >
+            Documentary
+          </button>
+          <button
+            className={`filter-button ${selectedFilter === 'Action & Adventure' ? 'selected' : ''}`}
+            onClick={() => handleFilter('Action & Adventure')}
+          >
+            Action & Adventure
+          </button>
+        </div>
+    <div className="movie-list">
+      {seriesList.map((movie: seriesType, index) => (
+        <div className="movie-item" key={index}>
+          <div className="movie-poster">
+            <img className="movie-image" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.name} />
+            <button
+                className={`add-button ${movie.clicked ? 'clicked' : ''}`}
+                onClick={() => handleAdd(movie.id)}>
+                {movie.clicked ? '✓' : '+'}
+              </button>
+          </div>
+        </div>
+    ))}
+    </div>
         <form className='FormSearch'>
           <div className="search-bar">
             <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
