@@ -1,14 +1,15 @@
 .login-page {
-  background-color: #171610; 
-  color: #ffffff; 
-  height: 100vh; 
-  display: flex; 
-  flex-direction: column; // Ajouter cette ligne
+  background-color: #171610;
+  color: #ffffff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 
   .NamePage {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+    font-size: 2em;
   }
 
   form {
@@ -18,16 +19,37 @@
 
     input {
       margin: 10px;
-      padding: 10px;
-      color: #000000; 
-      background-color: #ffffff; 
+      padding: 15px; 
+      color: #000000;
+      background-color: #ffffff;
+      border: none;
+      border-radius: 15px; 
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+      transition: box-shadow 0.3s ease; 
+      width: 300px; 
+      outline: none; 
+    }
+
+    input:focus {
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
     }
 
     button {
       margin: 10px;
-      padding: 10px;
+      padding: 15px; 
       color: #ffffff;
       background-color: #000000;
+      border: none;
+      border-radius: 15px; 
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+      transition: box-shadow 0.3s ease; 
+      cursor: pointer;
+      width: 300px; 
+      outline: none; 
+    }
+
+    button:hover {
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); 
     }
   }
 }
