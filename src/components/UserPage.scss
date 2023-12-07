@@ -1,18 +1,54 @@
 .user-page {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  padding: 60px;
+  height: 100vh;
+  background-color: #171610;
+  flex-direction: column;
+
+  .user-header {
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #171610; 
-  
-    .profile-icon {
-      font-size: 4em;
-      color: #ffffff;
-    }
-  
-    .user-name {
-      font-size: 2em;
-      color: #ffffff;
-    }
+    margin-bottom: 20px;
   }
+
+  .profile-icon {
+    font-size: 4em;
+    color: #ffffff;
+  }
+
+  .user-info{
+    display: flex;
+    align-items: center;
+  }
+
+  .user-name {
+    font-size: 2em;
+    color: #ffffff;
+    margin-left: 10px;
+  }
+
+  .change-email-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #ffffff;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .change-email-button:hover {
+    background-color: #333333;
+  }
+
+  .envelope-icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+
+  .movie-list {
+  }
+}

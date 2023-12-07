@@ -1,12 +1,14 @@
 import { useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { faSearch} from '@fortawesome/free-solid-svg-icons';
+import { faSearch, } from '@fortawesome/free-solid-svg-icons';
 import './HomePage.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function HomePage() {
 
   const queryParams = useParams();
+
+  const [clicked, setClicked] = useState(false);
 
   type movieType = {
       adult: boolean,
@@ -22,7 +24,8 @@ function HomePage() {
       title: string,
       video: boolean,
       vote_average: number,
-      vote_count: number
+      vote_count: number,
+      clicked : boolean
   }
 
   const mvList: movieType[] = [];
@@ -43,14 +46,26 @@ function HomePage() {
     fetchInfo();
   }, [url])
 
+  const handleAdd = (movieId: number) => {
+    const updatedMovies = movieList.map((movie: movieType) => {
+      if (movie.id === movieId) {
+        return { ...movie, clicked: !movie.clicked };
+      }
+      return movie;
+    });
+    setMovieList(updatedMovies);
+  };
+
 
   return (
-    <div className="home-page">
-      {movieList.length > 0 && (
-      <div 
-        className="featured-movie" 
-        style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movieList[0].poster_path})` }}
-      >
+<div className="home-page">
+  {movieList.length > 0 && (
+    <div 
+      className="featured-movie" 
+      style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movieList[0].poster_path})` }}
+    >
+      <div className="gradient-overlay"></div>
+      <div className="text-content">
         <div className="overlay">
           <p className='TitleOverlay'>{movieList[0].title}</p>
           <p className='OverviewOverlay'>{movieList[0].overview.substring(0, 225).concat('...')}</p>
@@ -59,7 +74,8 @@ function HomePage() {
           </p>
         </div>
       </div>
-    )}
+    </div>
+  )}
       <form className='FormSearch'>
         <div className="search-bar">
           <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
@@ -70,18 +86,26 @@ function HomePage() {
           />
         </div>
       </form>
-     <div className="movie-list">
+    <div className="movie-list">
       {movieList.map((movie: movieType, index) => (
-        <div className="movie-item">
-          <img className="movie-image" src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path}></img>
-          <p className='TitleMovie'>
-            {movie.title.length > 22 ? movie.title.substring(0,22).concat('...') : movie.title}
+        <div className="movie-item" key={index}>
+          <div className="movie-poster">
+            <img className="movie-image" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+            <button
+                className={`add-button ${movie.clicked ? 'clicked' : ''}`}
+                onClick={() => handleAdd(movie.id)}>
+                {movie.clicked ? '✓' : '+'}
+              </button>
+          </div>
+          <p className="TitleMovie">
+            {movie.title.length > 22 ? movie.title.substring(0, 22).concat('...') : movie.title}
           </p>
         </div>
-       ))}
+      ))}
       </div>
     </div>
-  )
+  );
 }
+
 
 export default HomePage;
