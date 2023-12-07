@@ -8,6 +8,7 @@ import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import UserPage from './components/UserPage';
 import LogoutPage from './components/LogoutPage';
+import Footer from './components/Footer';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from '.';
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Logout" element={<LogoutPage />} />
         <Route path="/User" element={<UserPage />} />
       </Routes>
+      <Footer />
     </>
   )
 }

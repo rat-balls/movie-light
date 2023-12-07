@@ -1,6 +1,6 @@
-import React, { FormEvent, useEffect, useState } from 'react'
-import './LoginPage.scss' 
-import { useNavigate } from 'react-router-dom';
+import React, { FormEvent, useEffect, useState } from 'react';
+import './LoginPage.scss';
+import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '..';
 
@@ -15,32 +15,52 @@ export default function LoginPage() {
     event.preventDefault();
     signInWithEmailAndPassword(auth, userEmail, userPswrd)
       .then(() => {
-        console.log('logged in')
-        navigate('/')
+        console.log('logged in');
+        navigate('/');
       })
       .catch((error) => {
         const errorCode = error.code;
-        if(errorCode === 'auth/invalid-credential') {
+        if (errorCode === 'auth/invalid-credential') {
           setErrorMsg('Email ou Mot de passe erronés');
         }
-      });;
+      });
   }
 
   useEffect(() => {
-    if(auth.currentUser !== null) {
+    if (auth.currentUser !== null) {
       navigate('/');
     }
   }, [auth.currentUser, navigate]);
 
   return (
     <div className="login-page">
-      <h1 className='NamePage'>LOGIN PAGE</h1>
+      <h1 className="NamePage">LOGIN PAGE</h1>
       <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} required />
-        <input type="password" placeholder="Mot de passe" value={userPswrd} onChange={(e) => setUserPswrd(e.target.value)} required />
-        {errorMsg !== null ? <p>{errorMsg}</p> : <></>}
-        <button type="submit">Se connecter</button>
+        <input
+          type="email"
+          placeholder="Email"
+          value={userEmail}
+          onChange={(e) => setUserEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Passwird"
+          value={userPswrd}
+          onChange={(e) => setUserPswrd(e.target.value)}
+          required
+        />
+        {errorMsg !== '' && <p>{errorMsg}</p>}
+        {!auth.currentUser && (
+          <p>
+            No Account ?{' '}
+            <Link to="/register" className="register-link">
+              Register Here
+            </Link>
+          </p>
+        )}
+        <button type="submit">Login</button>
       </form>
     </div>
-  )
+  );
 }

@@ -1,17 +1,48 @@
-// NavBar.scss
 .navbar {
-    background-color: #3b392e;
-    color: #ffffff; 
-    display: flex;
-    justify-content: space-around; 
-    padding: 20px 0; 
-  
-    a {
-      color: #ffffff; 
-      text-decoration: none; 
-  
-      &:hover {
-        color: #ff0000; 
-      }
-    }
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #171610;
+  color: #ffffff;
+}
+
+.navbar-links a {
+  margin-right: 20px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.user-icon {
+  display: flex;
+  align-items: center;
+}
+
+.user-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #000000;
+  margin-right: 20px;
+}
+
+.logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #cccccc;
+}

@@ -13,8 +13,8 @@ function UserPage() {
   const auth = getAuth(app);
 
   const handleChangeEmail = () => {
-    setShowSettings(true);
-  };
+    setShowSettings(prevState => !prevState);
+  };  
 
   const handleValidateSettings = () => {
     setShowSettings(false);
@@ -36,36 +36,37 @@ function UserPage() {
         </div>
         <button className="change-email-button" onClick={handleChangeEmail}>
           <FontAwesomeIcon icon={faGear} className="gear-icon" />
-          ‎ ‎ Réglages utilisateur
+          ‎ ‎ User settings
         </button>
       </div>
       {showSettings && (
         <div className="settings">
           <div className="settings-item">
-            <p>Changer d'email</p>
+            <p>Change email</p>
             <input
               type="email"
-              placeholder="Nouvel email"
+              placeholder="New Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="settings-item">
-            <p>Changer de mot de passe</p>
+            <p>Change password</p>
             <input
               type="password"
-              placeholder="Nouveau mot de passe"
+              placeholder="New Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <button className="validate-settings-button" onClick={handleValidateSettings}>
-            Valider les réglages
+          Validate the settings
           </button>
         </div>
       )}
       <div className="user-movies">
-        <p>My Favorite Show's</p>
+        <p>My Favorite Shows</p>
+        <hr className="divider" />
       </div>
     </div>
   );
