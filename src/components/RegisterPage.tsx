@@ -10,13 +10,13 @@ export default function RegisterPage() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPswrd, setUserPswrd] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const auth = getAuth(app);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    console.log(userEmail)
-    console.log(userPswrd)
+    
     createUserWithEmailAndPassword(auth, userEmail, userPswrd)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -27,8 +27,11 @@ export default function RegisterPage() {
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage)
+        if(errorCode === 'auth/weak-password') {
+          setErrorMsg('Mot de passe doit faire au moins 6 caractères');
+        } else {
+          setErrorMsg(error.message);
+        }
       });;
   }
 
@@ -46,6 +49,7 @@ export default function RegisterPage() {
         <input className='UserName' type="text" placeholder="UserName" value={userName} onChange={(e) => setUserName(e.target.value)} required />
         <input type="email" placeholder="Email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} required />
         <input type="password" placeholder="Password" value={userPswrd} onChange={(e) => setUserPswrd(e.target.value)} required />
+        {errorMsg !== '' ? <p>{errorMsg}</p> : <></>}
         <button type="submit">Register</button>
         </form>
         <p>Already have an account? <Link to="/login">Log in here</Link></p>

@@ -1,5 +1,3 @@
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getAuth, signOut } from 'firebase/auth';
 import React, { useEffect } from 'react'
 import { app } from '..';

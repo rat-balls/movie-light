@@ -22,6 +22,8 @@ export default function LoginPage() {
         const errorCode = error.code;
         if (errorCode === 'auth/invalid-credential') {
           setErrorMsg('Email ou Mot de passe erronés');
+        } else {
+          setErrorMsg(error.message);
         }
       });
   }
