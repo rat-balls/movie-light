@@ -27,9 +27,6 @@ function NavBar() {
         setLoggedIn(false);
         navigate('/');
       })
-      .catch((error) => {
-        console.error(error);
-      });
   };
 
   const profileLink = loggedIn ? (

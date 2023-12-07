@@ -15,7 +15,7 @@
       height: 60%; 
       background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
       pointer-events: none;
-      border-radius: 50px;
+      border-radius: 20px;
     }
 
     .featured-movie .text-content {
@@ -32,10 +32,10 @@
       background-size: cover;
       background-position: center;
       position: relative;
-      width: 98%;
-      margin-left: 1%;
+      width: 95%;
+      margin-left: 3%;
       height: 470px;
-      border-radius: 50px;
+      border-radius: 20px;
       background-size: cover;
       background-position: center -1000px;
       color: #ffffff;
@@ -43,6 +43,31 @@
       justify-content: flex-start;
       align-items: end;
       font-size: 2em;
+      }
+
+      .add-button-featured {
+        position: absolute;
+        top: -200px;
+        right: 15px;
+        background-color: rgba(58, 57, 57, 0.571);
+        border: none;
+        color: #ffffff;
+        font-size: 35px;
+        cursor: pointer;
+        transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        padding: 9px 20px;
+        border-radius: 25%;
+      
+        &.clicked {
+          background-color: orange;
+          color: #ffffff;
+          padding: 9px 18px;
+          font-size: 32px;
+        }
+      
+        &:hover {
+          opacity: 1;
+        }
       }
 
       .movie-list {
@@ -91,6 +116,27 @@
             opacity: 1;
           }
         }
+      }
+
+
+      .Filter {
+        display: flex;
+        margin: 10px 3%;
+      }
+      
+      .filter-button {
+        background-color: #f1f1f1;
+        color: black;
+        padding: 10px 10px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        border-radius: 10px;
+        margin-right: 1%;
+      }
+      
+      .filter-button.selected {
+        background-color: #ffe88b;
       }
 
     .overlay{
