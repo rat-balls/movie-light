@@ -9,6 +9,7 @@ import LoginPage from './components/LoginPage';
 import UserPage from './components/UserPage';
 import LogoutPage from './components/LogoutPage';
 import Footer from './components/Footer';
+import Detail from './components/Detail';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Logout" element={<LogoutPage />} />
         <Route path="/User" element={<UserPage />} />
+        <Route path="/detail" element={<Detail />} />
       </Routes>
       <Footer />
     </>

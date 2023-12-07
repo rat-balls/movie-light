@@ -47,7 +47,7 @@
 
       .add-button-featured {
         position: absolute;
-        top: -200px;
+        top: -175px;
         right: 15px;
         background-color: rgba(58, 57, 57, 0.571);
         border: none;
@@ -162,11 +162,26 @@
     .OptionOverlay {
       .bubble {
         background-color: #ffffff;
-        border-radius: 20px;
+        border-radius: 5px;
+        padding: 5px;
         color: black;
         font-size: 20px;
         display: inline-block;
       }
+    }
+
+    .serie-list{
+      .bubble {
+        background-color: #ffffff;
+        border-radius: 5px;
+        padding: 5px;
+        color: black;
+        font-size: 15px;
+        display: inline-block;
+      }
+
+
+
     }
 
     .FormSearch{

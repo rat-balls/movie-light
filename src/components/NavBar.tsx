@@ -41,6 +41,7 @@ function NavBar() {
         <Link to="/calendar">Calendar</Link>
         <Link to="/">Shows</Link>
         {profileLink}
+        <Link to="/detail">detail</Link>
       </div>
 
       <div className="user-icon">

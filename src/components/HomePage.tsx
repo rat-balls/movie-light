@@ -80,7 +80,7 @@ function HomePage() {
               <p className='TitleOverlay'>{seriesList[0].name}</p>
               <p className='OverviewOverlay'>{seriesList[0].overview.substring(0, 225).concat('...')}</p>
               <p className='OptionOverlay'>
-                <span className="bubble">/ from release_date to popularity, needs changing ? / - {seriesList[0].popularity}</span>
+                <span className="bubble">{'Rating' + '  ' + seriesList[0].vote_average}</span>
               </p>
               <button
                 className={`add-button-featured ${seriesList[0].clicked ? 'clicked' : ''}`}
@@ -164,6 +164,8 @@ function HomePage() {
                 onClick={() => handleAdd(serie.id)}>
                 {serie.clicked ? '✓' : '+'}
               </button>
+              <p className="TitleSerie">{serie.name}</p>
+              <p className="bubble">{'Rating' + '  ' + serie.vote_average}</p>
           </div>
         </div>
     ))}
