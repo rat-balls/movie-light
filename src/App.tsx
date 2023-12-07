@@ -8,8 +8,6 @@ import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import UserPage from './components/UserPage';
 import LogoutPage from './components/LogoutPage';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { app } from '.';
 
 function App() {
   return (
