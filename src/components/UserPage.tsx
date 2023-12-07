@@ -1,13 +1,16 @@
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faGear } from '@fortawesome/free-solid-svg-icons';
-import './UserPage.scss';
+import React, { useEffect, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
+import './UserPage.scss'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { app } from '..';
 
 function UserPage() {
-  const userName = "FARTHAN DELAFARTHE";
   const [showSettings, setShowSettings] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const auth = getAuth(app);
 
   const handleChangeEmail = () => {
     setShowSettings(true);
@@ -17,12 +20,19 @@ function UserPage() {
     setShowSettings(false);
   };
 
+
+  onAuthStateChanged(auth, (user) => {
+    if(user && user.displayName !== null) {
+      setDisplayName(user.displayName);
+    }
+  })
+  
   return (
     <div className="user-page">
       <div className="user-header">
         <div className="user-info">
           <FontAwesomeIcon icon={faUser} className="profile-icon" />
-          <h1 className="user-name">{userName}</h1>
+          <h1 className="user-name">{displayName}</h1>
         </div>
         <button className="change-email-button" onClick={handleChangeEmail}>
           <FontAwesomeIcon icon={faGear} className="gear-icon" />
