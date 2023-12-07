@@ -9,20 +9,21 @@ export default function LoginPage() {
   const auth = getAuth(app);
   const [userEmail, setUserEmail] = useState('');
   const [userPswrd, setUserPswrd] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-
     signInWithEmailAndPassword(auth, userEmail, userPswrd)
-        .then((userCredential) => {
-          console.log('logged in')
-          navigate('/')
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage)
-        });;
+      .then(() => {
+        console.log('logged in')
+        navigate('/')
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        if(errorCode === 'auth/invalid-credential') {
+          setErrorMsg('Email ou Mot de passe erronés');
+        }
+      });;
   }
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit}>
         <input type="email" placeholder="Email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} required />
         <input type="password" placeholder="Mot de passe" value={userPswrd} onChange={(e) => setUserPswrd(e.target.value)} required />
+        {errorMsg !== null ? <p>{errorMsg}</p> : <></>}
         <button type="submit">Se connecter</button>
       </form>
     </div>
