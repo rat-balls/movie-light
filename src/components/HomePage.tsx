@@ -8,8 +8,6 @@ function HomePage() {
 
   const queryParams = useParams();
 
-  const [clicked, setClicked] = useState(false);
-
   type seriesType = {
       adult: boolean,
       backdrop_path: string,
@@ -32,13 +30,19 @@ function HomePage() {
   const srList: seriesType[] = [];
 
   const [seriesList, setSeriesList] = useState(srList)
-  const [filteredSeriesList, setFilteredSeriesList] = useState(srList)
+  const [query, setQuery] = useState('')
 
   const API_KEY='1321ab72499d42466b65c40a21df1192'
-  const url = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`
+  const [url, setUrl] = useState(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`)
 
   useEffect(() => {
     async function fetchInfo() { 
+      if(query !== '') {
+        setUrl(`https://api.themoviedb.org/3/search/tv?query=${query}&api_key=${API_KEY}`);
+      } else if (query === '') {
+        setUrl(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`);
+      }
+
       try {
         const res = await fetch(url);
         const d = await res.json();
@@ -48,7 +52,7 @@ function HomePage() {
       }
     }
     fetchInfo();
-  }, [url])
+  }, [url, query])
 
   const handleAdd = (serieId: number) => {
     const updatedSeries = seriesList.map((serie: seriesType) => {
@@ -87,6 +91,7 @@ function HomePage() {
               type="text"
               placeholder="Search"
               name="query"
+              value={query} onChange={(e) => setQuery(e.target.value)}
             />
           </div>
         </form>
