@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
 import './UserPage.scss'
-import { getAuth, onAuthStateChanged, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, updateEmail, updatePassword } from 'firebase/auth';
 import { app } from '..';
 
 function UserPage() {
@@ -38,7 +38,7 @@ function UserPage() {
   const [errorMsg, setErrorMsg] = useState('');
 
   const API_KEY = '1321ab72499d42466b65c40a21df1192'
-  const [url, setUrl] = useState(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`)
+  const [url] = useState(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`)
 
   useEffect(() => {
     async function fetchInfo() {
