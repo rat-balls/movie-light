@@ -6,7 +6,6 @@ import { getAuth, onAuthStateChanged, updateEmail, updatePassword } from 'fireba
 import { app } from '..';
 
 function UserPage() {
-  const [showSettings, setShowSettings] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -54,12 +53,8 @@ function UserPage() {
     fetchInfo();
   }, [url]);
 
-  const handleChangeEmail = () => {
-    setShowSettings(prevState => !prevState);
-  };
 
   const handleValidateSettings = () => {
-    setShowSettings(false);
     if(auth.currentUser) {
       updatePassword(auth.currentUser, password).catch((error) => {
         console.log(error)
@@ -95,12 +90,8 @@ function UserPage() {
           <FontAwesomeIcon icon={faUser} className="profile-icon" />
           <h1 className="user-name">{displayName}</h1>
         </div>
-        <button className="change-email-button" onClick={handleChangeEmail}>
-          <FontAwesomeIcon icon={faGear} className="gear-icon" />
-          ‎ ‎ User settings
-        </button>
       </div>
-      {showSettings && (
+      {(
         <div className="settings">
           <div className="settings-item">
             <p>Change email</p>

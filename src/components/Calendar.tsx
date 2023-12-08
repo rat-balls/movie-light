@@ -54,7 +54,8 @@ export default function Calendar() {
 
     return (
         <div className="calendar">
-        <h1 className='title-page'>CALENDAR</h1>
+        <div className='box'>
+        <h1 className='title-page'>Calendar</h1>
           <div className="week-days">
             {Days.map((day, index) => (
               <div className="day" key={index}>
@@ -76,6 +77,7 @@ export default function Calendar() {
                 </div>
               </div>
             ))}
+          </div>
           </div>
         </div>
       );
