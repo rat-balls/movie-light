@@ -10,6 +10,7 @@ import UserPage from './components/UserPage';
 import LogoutPage from './components/LogoutPage';
 import Footer from './components/Footer';
 import Detail from './components/Detail';
+import Calendar from './components/Calendar';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <NavBar /> 
       <Routes>
         <Route path="/" element={<HomePage />} /> 
+        <Route path="/Calendar" element={<Calendar />} />
         <Route path="/Register" element={<RegisterPage />} />
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Logout" element={<LogoutPage />} />
