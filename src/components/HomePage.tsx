@@ -69,9 +69,9 @@ function HomePage() {
 
   return (
     <div className="home-page">
-      {seriesList.length > 0 && (
-        <div
-          className="featured-serie"
+      {( seriesList !==undefined && seriesList.length > 0) && (
+        <div 
+          className="featured-serie" 
           style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${seriesList[0].poster_path})` }}
         >
           <div className="gradient-overlay"></div>

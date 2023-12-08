@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faGear } from '@fortawesome/free-solid-svg-icons'
 import './UserPage.scss'
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
 import { app } from '..';
 
 function UserPage() {
@@ -34,20 +34,16 @@ function UserPage() {
   const srList: seriesType[] = [];
 
   const [seriesList, setSeriesList] = useState(srList)
-  const [query, setQuery] = useState('')
+
+  const [errorMsg, setErrorMsg] = useState('');
 
   const API_KEY = '1321ab72499d42466b65c40a21df1192'
   const [url, setUrl] = useState(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`)
 
   useEffect(() => {
     async function fetchInfo() {
-      let apiUrl = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`;
-      if (query !== '') {
-        apiUrl = `https://api.themoviedb.org/3/search/tv?query=${query}&api_key=${API_KEY}`;
-      }
-  
       try {
-        const res = await fetch(apiUrl);
+        const res = await fetch(url);
         const d = await res.json();
         setSeriesList(d.results);
       } catch (error) {
@@ -56,7 +52,7 @@ function UserPage() {
     }
   
     fetchInfo();
-  }, [query]);
+  }, [url]);
 
   const handleChangeEmail = () => {
     setShowSettings(prevState => !prevState);
@@ -64,6 +60,16 @@ function UserPage() {
 
   const handleValidateSettings = () => {
     setShowSettings(false);
+    if(auth.currentUser) {
+      updatePassword(auth.currentUser, password).catch((error) => {
+        console.log(error)
+        setErrorMsg(error.message);
+      });
+      updateEmail(auth.currentUser, email).catch((error) => {
+        console.log(error)
+        setErrorMsg(error.message);
+      });
+    }
   };
 
   onAuthStateChanged(auth, (user) => {
@@ -114,6 +120,7 @@ function UserPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {errorMsg !== '' && <p>{errorMsg}</p>}
           <button className="validate-settings-button" onClick={handleValidateSettings}>
             Validate the settings
           </button>
