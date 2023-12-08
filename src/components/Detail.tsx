@@ -50,7 +50,7 @@ function Detail() {
             }
 
             try {
-                const res = await fetch(url);
+                const res = await fetch(url);   
                 const d = await res.json();
                 setSeriesList(d.results);
             } catch (error) {
@@ -80,7 +80,7 @@ function Detail() {
     ];
 
     return (
-        <div className="home-page">
+        <div className="detail-page">
             {seriesList.length > 0 && (
                 <div
                     className="featured-serie"
