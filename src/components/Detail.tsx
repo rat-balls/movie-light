@@ -189,7 +189,7 @@ function Detail() {
     };
 
     return (
-        <div className="home-page">
+        <div className="detail-page">
             {( seriesList !== undefined && seriesList.length > 0) && (
                 <div
                     className="featured-serie"
