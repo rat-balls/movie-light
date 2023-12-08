@@ -21,7 +21,7 @@ function App() {
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Logout" element={<LogoutPage />} />
         <Route path="/User" element={<UserPage />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/Details/:series_id" element={<Detail />} />
       </Routes>
       <Footer />
     </>

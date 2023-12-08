@@ -20,7 +20,6 @@ function UserPage() {
     setShowSettings(false);
   };
 
-
   onAuthStateChanged(auth, (user) => {
     if(user && user.displayName !== null) {
       setDisplayName(user.displayName);

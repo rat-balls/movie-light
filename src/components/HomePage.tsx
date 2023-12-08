@@ -69,7 +69,7 @@ function HomePage() {
 
   return (
     <div className="home-page">
-      {seriesList.length > 0 && (
+      {( seriesList !==undefined && seriesList.length > 0) && (
         <div 
           className="featured-serie" 
           style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${seriesList[0].poster_path})` }}
@@ -158,7 +158,7 @@ function HomePage() {
       {seriesList.map((serie: seriesType, index) => (
         <div className="serie-item" key={index}>
           <div className="serie-poster">
-            <img className="serie-image" src={`https://image.tmdb.org/t/p/w500/${serie.poster_path}`} alt={serie.name} />
+            <a href={`/Details/${serie.id}`}><img className="serie-image" src={`https://image.tmdb.org/t/p/w500/${serie.poster_path}`} alt={serie.name} /></a>
             <button
                 className={`add-button ${serie.clicked ? 'clicked' : ''}`}
                 onClick={() => handleAdd(serie.id)}>
