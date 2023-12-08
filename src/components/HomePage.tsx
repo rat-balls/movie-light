@@ -158,7 +158,7 @@ function HomePage() {
         {seriesList.map((serie: seriesType, index) => (
           <div className="serie-item" key={index}>
             <div className="serie-poster">
-              <img
+              <a href={`/Details/${serie.id}`}><img
                 className="serie-image"
                 src={
                   serie.poster_path
@@ -166,7 +166,7 @@ function HomePage() {
                     : `https://image.tmdb.org/t/p/w500/${seriesList[1].poster_path}`
                 }
                 alt={serie.name}
-              />
+              /></a>
               <button
                 className={`add-button ${serie.clicked ? 'clicked' : ''}`}
                 onClick={() => handleAdd(serie.id)}>
